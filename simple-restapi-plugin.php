@@ -21,13 +21,13 @@ function reg_endpoint() {
 } 
 
 function handler_somedata( $request ) {
-	$sitetitle = get_bloginfo();
-	$siteurl = get_site_url();
-	$adminemail = get_bloginfo('admin_email')
+	$site_title = get_bloginfo();
+	$site_url = get_site_url();
+	$admin_email = get_bloginfo('admin_email');
 	$response = array(
-		'Site title' => $sitetitle,
-		'Site URL' => $siteurl,
-		'Admin email' => $adminemail
+		'Site title' => $site_title,
+		'Site URL' => $site_url,
+		'Admin email' => $admin_email
 	);
 
 	return rest_ensure_response( $response );
