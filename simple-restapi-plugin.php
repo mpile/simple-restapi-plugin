@@ -1,6 +1,7 @@
 <?php
 /*
 Plugin Name: Simple REST API plugin
+Plugin URI: https://github.com/mpile/simple-resrapi-plugin
 Description: Create custom REST API Endpoint
 Version: 1.0
 Author: Miloš Piletić
@@ -20,17 +21,16 @@ function reg_endpoint() {
 } 
 
 function handler_somedata( $request ) {
-
+	$sitetitle = get_bloginfo();
+	$siteurl = get_site_url();
+	$adminemail = get_bloginfo('admin_email')
 	$response = array(
-		'firstname' => 'John',
-		'lastname' => 'Doe',
-		'email' => 'john@gmail.com'
+		'Site title' => $sitetitle,
+		'Site URL' => $siteurl,
+		'Admin email' => $adminemail
 	);
 
 	return rest_ensure_response( $response );
 }
 
-// call http://localhost/wordpress/wp-json/mysimplerestapi/v1/getsomedata
-// ako nije podignut endpoint javlja se greška
-//{"code":"rest_no_route","message":"No route was found matching the URL and request method.","data":{"status":404}}
-// koristan link: https://awhitepixel.com/blog/in-depth-guide-in-creating-and-fetching-custom-wp-rest-api-endpoints/
+// To consume this endpoint send request to  http://<your_own_domen>/wp-json/mysimplerestapi/v1/getsomedata
